@@ -19,6 +19,7 @@ import PostCardView from "@/components/pages/posts/CardView.vue";
 import ApiService from "@/services/ApiService";
 import type ResponseData from "@/types/ResponseData";
 import type Post from "@/types/post";
+import {apiPath} from "@/config";
 export default defineComponent({
   components: {
     PostCardView,
@@ -26,10 +27,9 @@ export default defineComponent({
   setup() {
     const post = ref({} as Post);
     const loading = ref(true);
-    const apiPath='/posts';
     const route = useRoute();
     function getPost() {
-      ApiService.get(apiPath,route.params.id)
+      ApiService.get(apiPath.posts,route.params.id)
         .then((response: ResponseData) => {
           console.log(response.data);
           post.value = response.data;

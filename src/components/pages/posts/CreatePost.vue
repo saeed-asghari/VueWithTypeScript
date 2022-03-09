@@ -23,7 +23,7 @@
             v-model.lazy="form.body"
           ></textarea>
         </div>
-
+        <div class="mt-2">
         <button type="submit" class="btn btn-primary" :disabled="loading">
           <div
             v-if="loading"
@@ -32,6 +32,7 @@
           ></div>
           CreatePost
         </button>
+        </div>
       </Form>
     </div>
   </div>
@@ -44,14 +45,13 @@ import ApiService from "@/services/ApiService";
 import type ResponseData from "@/types/ResponseData";
 import randomNumber from "@/utility/RandomNumber";
 import Swal from "sweetalert2";
-
+import {apiPath} from "@/config";
 export default defineComponent({
   components: {
     Form,
     Field,
   },
   setup() {
-    const apiPath = "/posts";
     const loading = ref(false);
     const schema = Yup.object().shape({
       title: Yup.string().required("Title is required"),
@@ -67,7 +67,7 @@ export default defineComponent({
 
     console.log(form);
     const createPost = () => {
-      ApiService.create(apiPath, {
+      ApiService.create(apiPath.posts, {
         title: form.title,
         body: form.body,
         userId: randomNumber(),

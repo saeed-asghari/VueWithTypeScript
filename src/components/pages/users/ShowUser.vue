@@ -19,6 +19,7 @@ import UserCardView from "@/components/pages/users/CardView.vue";
 import ApiService from "@/services/ApiService";
 import type ResponseData from "@/types/ResponseData";
 import type User from "@/types/user";
+import {apiPath} from "@/config";
 export default defineComponent({
   components: {
     UserCardView,
@@ -26,10 +27,9 @@ export default defineComponent({
   setup() {
     const user = ref({} as User);
     const loading = ref(true);
-    const apiPath = "/users";
     const route = useRoute();
     function getUser() {
-      ApiService.get(apiPath, route.params.id)
+      ApiService.get(apiPath.users, route.params.id)
         .then((response: ResponseData) => {
           console.log(response.data);
           user.value = response.data;

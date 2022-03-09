@@ -20,6 +20,7 @@ import ApiService from "@/services/ApiService";
 import type ResponseData from "@/types/ResponseData";
 import type User from "@/types/user";
 import { useRoute } from "vue-router";
+import {apiPath} from "@/config";
 export default defineComponent({
   components: {
     UserCardView,
@@ -28,9 +29,8 @@ export default defineComponent({
     const users = ref([] as User[]);
     const loading = ref(true);
     const route = useRoute();
-    const apiPath = "/users";
     function getUsers() {
-      ApiService.getAll(apiPath)
+      ApiService.getAll(apiPath.users)
         .then((response: ResponseData) => {
           console.log(response.data);
           users.value = response.data;
