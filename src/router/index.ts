@@ -4,6 +4,7 @@ import UsersView from "../views/UsersView.vue";
 import ShowUserView from "../views/ShowUserView.vue";
 import PostsView from "../views/PostsView.vue";
 import ShowPostView from "../views/ShowPostView.vue";
+import CreatePostView from "../views/CreatePostView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,12 @@ const router = createRouter({
       path: "/posts/:id",
       name: "postId",
       component: ShowPostView,
+    
+    },
+    {
+      path: "/posts/create",
+      name: "createPost",
+      component: CreatePostView,
     
     },
   ],

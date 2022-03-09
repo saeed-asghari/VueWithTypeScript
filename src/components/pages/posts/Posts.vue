@@ -1,6 +1,11 @@
 <template>
   <div class="container mt-5">
     <div class="row g-3">
+      <div class="ml-5">
+        <router-link class="btn btn-dark" :to="{ name: 'createPost' }"
+          >Create Post</router-link
+        >
+      </div>
       <div v-if="loading">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
@@ -27,14 +32,14 @@ export default defineComponent({
   setup() {
     const posts = ref([] as Post[]);
     const loading = ref(true);
-    const route =useRoute();
-    const api='/posts';
+    const route = useRoute();
+    const apiPath = "/posts";
     function getPosts() {
-      ApiService.getAll(api)
+      ApiService.getAll(apiPath)
         .then((response: ResponseData) => {
           console.log(response.data);
           posts.value = response.data;
-          loading.value =false
+          loading.value = false;
         })
         .catch((e: Error) => {
           console.log(e);
@@ -42,7 +47,7 @@ export default defineComponent({
     }
     getPosts();
 
-    return { posts, loading ,route};
+    return { posts, loading, route };
   },
 });
 </script>

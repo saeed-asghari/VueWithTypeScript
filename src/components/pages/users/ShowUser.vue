@@ -26,10 +26,10 @@ export default defineComponent({
   setup() {
     const user = ref({} as User);
     const loading = ref(true);
-    const api = "/users";
+    const apiPath = "/users";
     const route = useRoute();
     function getUser() {
-      ApiService.get(api, route.params.id)
+      ApiService.get(apiPath, route.params.id)
         .then((response: ResponseData) => {
           console.log(response.data);
           user.value = response.data;

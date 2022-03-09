@@ -27,15 +27,14 @@ export default defineComponent({
   setup() {
     const users = ref([] as User[]);
     const loading = ref(true);
-    const route =useRoute();
-     const api='/users';
+    const route = useRoute();
+    const apiPath = "/users";
     function getUsers() {
-
-      ApiService.getAll(api)
+      ApiService.getAll(apiPath)
         .then((response: ResponseData) => {
           console.log(response.data);
           users.value = response.data;
-          loading.value =false
+          loading.value = false;
         })
         .catch((e: Error) => {
           console.log(e);
@@ -43,7 +42,7 @@ export default defineComponent({
     }
     getUsers();
 
-    return { users, loading ,route};
+    return { users, loading, route };
   },
 });
 </script>

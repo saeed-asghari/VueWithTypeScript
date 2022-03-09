@@ -8,10 +8,6 @@
       </div>
       <div v-else class="col-md-4">
         <PostCardView :post="post" />
-        <div class="card-footer">
-          <button class="btn brn-sm btn-danger me-4">Delete</button>
-          <button class="btn brn-sm btn-dark me-4">Edit</button>
-        </div>
       </div>
     </div>
   </div>
@@ -30,10 +26,10 @@ export default defineComponent({
   setup() {
     const post = ref({} as Post);
     const loading = ref(true);
-    const api='/posts';
+    const apiPath='/posts';
     const route = useRoute();
     function getPost() {
-      ApiService.get(api,route.params.id)
+      ApiService.get(apiPath,route.params.id)
         .then((response: ResponseData) => {
           console.log(response.data);
           post.value = response.data;
